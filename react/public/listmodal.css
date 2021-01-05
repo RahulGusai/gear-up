@@ -1,0 +1,57 @@
+.list-modal{
+        position: fixed;
+        /* margin-top: 100px; */
+        font-family: 'Work Sans', sans-serif;   
+        width: 400px;
+        height: 150px;
+        background: white;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        z-index: 1000;
+        justify-self: center;
+        align-self: center;
+        display: grid;
+        grid-template-rows: 25px 1fr 30px;
+        grid-gap: 2px;
+        background:#d3d3d3;
+    }
+
+.show {
+    visibility: visible;
+}
+
+.hide {
+    visibility: hidden;
+}   
+
+.list-modal i {
+    cursor: pointer;
+    font-size: 25px;
+    color: #A3A3A3;
+    justify-self: end;
+    margin-right: 5px;
+    margin-top: 0px;
+
+}
+
+.list-modal textarea{
+    resize: none;
+    margin: 5px;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+.list-modal .add-list-btn {
+    border-radius: 4px  ;
+    height: 20px;
+    width: 60px;
+    font-size: 13px;
+    justify-self: end;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background: white;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}

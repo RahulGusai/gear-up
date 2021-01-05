@@ -1,0 +1,163 @@
+.login-container { 
+    background-image: linear-gradient(to right, #00375a, #003b5b, #003f5a, #00435a, #004659, #054a5c, #0a4f60, #105363, #145a6d, #186177, #1d6881, #226f8b);    
+    display: grid;
+    height: 100vh;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .login-form-container {
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    display: grid;
+    grid-template-rows: 50px 250px 150px 150px;
+  }
+
+  .login-form-container .topbar {
+    display: grid;
+    grid-template-columns: 1fr 25px;
+  } 
+
+  .login-form-container .close-icon {
+    cursor: pointer;
+    font-size: 25px;
+    align-self: start;
+    justify-self: end;
+    margin-right: 2px;
+  } 
+
+
+  .login-form-container .heading {
+    font-size: 10px;
+    display: grid;
+    grid-template-rows: 1fr 10px;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .login-form-container .buttons {
+    align-self: center;
+    display: grid;
+    grid-template-rows: 40px 50px 40px;
+    grid-template-columns: 350px;
+    grid-gap: 30px;
+    justify-content: center;
+  }
+
+  .login-form-container .password-wrapper {
+    display: grid;
+    grid-template-rows: 1fr 10px;
+  }
+
+  .password-wrapper a {
+    justify-self: end;
+    font-size: 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+ .headingbreak {
+    width: 80px;
+    height: 5px;
+    background-image: linear-gradient(to right top, #042739, #042b3f, #032f46, #03334c, #033753);
+    
+  }
+
+  .login-form-container .third-party {
+    display: grid;
+    grid-template-rows: 10px 50px;
+    grid-gap: 25px;
+    justify-items: center;
+
+  }
+  
+  .login-form-container .options {
+    display: grid;
+    grid-template-rows: 20px 20px 20px;
+    grid-gap: 10px;
+    justify-items: center;
+  }
+
+  .login-form-container .linebreak {
+    width: 80%;
+    height: 1px;
+    background:rgb(120,120,120);
+  }
+
+  .login-form-container .google-btn {
+    height: 30px;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 10px 200px;
+    justify-content: center;
+    grid-gap: 5px;
+  }
+
+  .login-form-container {
+    font-size: 15px;
+  }
+
+  .forgot-pwd-container { 
+    background-image: linear-gradient(to right, #00375a, #003b5b, #003f5a, #00435a, #004659, #054a5c, #0a4f60, #105363, #145a6d, #186177, #1d6881, #226f8b);    
+    display: grid;
+    height: 100vh;
+    align-content: center;
+    justify-content: center;
+  }
+
+
+  .forgot-pwd-form {
+    width: 400px;
+    height: 200px;
+    background-color: white;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    display: grid;
+    grid-template-rows: 50px 150px
+  }
+
+  .forgot-pwd-form  .topbar {
+    display: grid;
+    grid-template-columns: 1fr 25px;
+    align-content: start;
+  } 
+
+  .forgot-pwd-form .heading {
+    font-size: 8px;
+    display: grid;
+    grid-template-rows: 1fr 20px;
+    align-items: center;
+    justify-content: start;
+    
+  }
+
+  .forgot-pwd-form .buttons {
+    margin-bottom: 15px;
+    align-self: end;
+    display: grid;
+    grid-template-rows: 40px 40px;
+    grid-gap: 25px;
+    grid-template-columns: 350px;
+    justify-content: center;
+  }
+
+  .forgot-pwd-form .close-icon {
+    cursor: pointer;
+    font-size: 25px;
+    align-self: start;
+    justify-self: end;
+    margin-right: 2px;
+  } 
+
+  .forgot-pwd-form .headingbreak {
+    justify-self: start;
+    margin-left: 0px;
+  }
+   
+  /* {  
+    width: 100px;
+    height: 5px;
+    background-image: linear-gradient(to right top, #042739, #042b3f, #032f46, #03334c, #033753);
+    justify-self: start;
+  }  */

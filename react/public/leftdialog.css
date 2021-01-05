@@ -1,0 +1,131 @@
+.left-dialog-wrapper 
+{
+    background: #46C64A;
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    margin-top:30px;
+}
+
+.left-dialog-wrapper label{
+    font-family: 'Work Sans', sans-serif;
+}
+
+.left-dialog-wrapper .heading {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    display: grid;
+    grid-template-rows: 25px 25px;
+    grid-gap: 5px;
+    justify-self: center;
+}
+
+
+.left-dialog-wrapper .heading .footer {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-gap: 5px;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.left-dialog-wrapper .heading .card-label{
+    justify-self: end;
+}
+
+.left-dialog-wrapper .currentBoardLabel {
+    justify-self: center;
+}
+
+.left-dialog-wrapper .board-list-wrapper {
+    margin-top: 50px;
+    font-weight: 600;
+    font-size: 20px;
+    display: grid;
+    grid-template-rows: 30px auto;
+}
+
+.left-dialog-wrapper .board-list-wrapper label{
+    align-self: end;
+    margin-left: 5px;
+}
+
+.left-dialog-wrapper .board-list-wrapper .board-list {
+    align-self: start;
+    justify-self: center;
+}
+
+.left-dialog-wrapper .board-list-wrapper .board-list ul{
+    padding-left: 0px;
+}
+
+
+.left-dialog-wrapper  .board-list-wrapper .board-list li{
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+.left-dialog-wrapper .board-list-wrapper .board-list button {
+    color: black;
+    font-weight: 600;
+    width: 275px;
+    height: 25px;
+    opacity: 0.2;
+    border: 1px solid #4E9E45;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.left-dialog-wrapper .board-list-wrapper .board-list .add-new-board {
+    color: white;
+    font-weight: 600;
+    width: 275px;
+    height: 25px;
+    opacity: 0.5;
+    background: black;
+    border: 1px solid #4E9E45;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.left-dialog-wrapper .options-wrapper{
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    display: grid;
+    grid-template-rows: 30px auto;
+
+}
+
+
+.left-dialog-wrapper .options-wrapper .options-list ul {
+    padding-left: 0px;
+}
+
+.left-dialog-wrapper .options-wrapper .options-list li {
+    margin-bottom: 5px;    
+    list-style-type: none;
+}
+
+
+.left-dialog-wrapper .options-wrapper label {
+    align-self: end;
+    margin-left: 5px;
+}
+
+.left-dialog-wrapper .options-wrapper .options-list button {
+    color: black;
+    font-weight: 600;
+    width: 275px;
+    height: 25px;
+    opacity: 0.2;
+    border: 1px solid #4E9E45;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.left-dialog-wrapper .options-wrapper .options-list {
+    justify-self: center;
+    align-self: center;
+}

@@ -1,0 +1,53 @@
+.topbar-wrapper {
+    position: fixed;
+    width: 100vw;
+    background: #46C64A;
+    display: grid;
+    grid-template-columns: 30px 250px 30px 1fr 30px 30px 50px;
+    grid-template-rows: 30px;
+    grid-gap: 5px;   
+    align-content: center;
+    border-bottom: 1px solid #4E9E45;
+}
+
+.topbar-wrapper button {
+    width: 30px;
+    height: 25px;
+    border-radius: 6px;
+    align-self: center;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 40px 0 rgba(0, 0, 0, 0.1);
+    color: black;
+    opacity: 0.5;
+}
+
+.topbar-wrapper input {
+    border-radius: 6px;
+    height: 20px;
+    align-self: center;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 40px 0 rgba(0, 0, 0, 0.1);
+    opacity: 0.5;
+}
+
+.topbar-wrapper .logo{
+    justify-self: center;
+    align-self: center;
+    height: 20px;
+    margin-right: 200px;
+
+}
+
+.topbar-wrapper .search-icon {
+    cursor: pointer;
+    margin-left: -30px;
+    margin-top: 8px;
+    opacity: 0.5;
+}
+
+
+.topbar-wrapper .account-btn {
+    border-radius: 20px;
+    /* margin-right: 10px; */
+}

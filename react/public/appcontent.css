@@ -1,0 +1,11 @@
+
+
+.app-content-wrapper{
+    margin-top: 50px;
+    margin-left: 310px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 10px;
+}
