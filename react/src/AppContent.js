@@ -15,9 +15,9 @@ export default class AppContent extends React.Component {
 
     render() {
         const lists = this.props.cards.map( (card,index) => {
-            return (
-                <List  addTask={this.addTask} cardIndex={index} name={card} tasks={this.props.tasks[index]} displayModalCb={this.props.displayModalCb}></List>
-            );
+                return (
+                    <List  addTask={this.addTask} cardIndex={index} name={card} tasks={this.props.tasks[index]} displayModalCb={this.props.displayModalCb}></List>
+                );
         });
         
         return(

@@ -1,8 +1,7 @@
-import './index.css'
+import './index.css';
 import React from 'react';
 import Task from './Task';
 
-//List Component Class
 export default class List extends React.Component {
     constructor(props) {
         super(props);

@@ -5,6 +5,7 @@ import LeftDialog from './LeftDialog'
 import AppContent from './AppContent'          
 import TaskModal from './TaskModal'
 import ListModal from './ListModal'
+import ColorModal from './ColorModal'
 
 export default class AppIndex extends React.Component {
     constructor(props) {
@@ -144,6 +145,7 @@ export default class AppIndex extends React.Component {
                     <LeftDialog addNewCard={this.addNewCard} boardList={this.state.boardList} currentIndex={this.state.currentIndex} changeCurrentBoard={this.changeCurrentBoard}></LeftDialog>
                     <AppContent boardName={this.state.boardList[this.state.currentIndex].name} boardIndex={this.state.currentIndex} displayModalCb={this.displayModal} cards={this.state.cards} tasks={this.state.tasks}></AppContent>
                     {/* <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal> */}
+                    <ColorModal></ColorModal>                    
                 </section>
 
                 <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal>

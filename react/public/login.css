@@ -17,7 +17,7 @@
 
   .login-form-container .topbar {
     display: grid;
-    grid-template-columns: 1fr 25px;
+    grid-template-columns: 1fr 25px;  
   } 
 
   .login-form-container .close-icon {
