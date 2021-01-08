@@ -1,41 +1,48 @@
 .color-picker-container{
     width: 300px;
-    height: 140px;
+    height: 180px;
     background:white;
     z-index: 4000;
     margin-left: 400px;
     margin-top: 300px;
     display: grid;
-    grid-template-rows: 20px 50px 30px;
-    grid-gap: 20px;
+    grid-template-rows: auto 40px 40px auto;
+    grid-gap: 10px;
+    position: : absolute;    
 }
 
-.color-picker-container p { 
+
+.color-picker-container .heading {
+    display: grid;
+    grid-template-columns: 1fr 20px;
+}
+
+.color-picker-container .heading p { 
     margin-bottom: 5px;
     margin-left: 5px;
-    font-size: 15px;
+    font-size: 14px;
+}
+
+
+.color-picker-container .heading i {
+    justify-self: end;
+    align-self: start;
+    font-size: 20px;
+    color: #A3A3A3;
+    cursor: pointer;
 }
 
 .holder-wrapper {
  display: grid;
  grid-template-columns: 100px 50px;
- grid-gap: 40px;
+ grid-gap: 20px;
+ align-self: end;
+ align-self: center;
  justify-content: center;
  align-content: center;
 }
 
-.holder-wrapper .call-picker {
-    border: 1px solid #AAA;
-    color: #666;
-    text-transform: uppercase;
-    float: left;    
-    outline: none;
-    padding: 10px;
-    text-transform: uppercase;
-    width: 85px;
-}
-
-.holder-wrapper .color-holder {
+.holder-wrapper .bg-color-holder {
     background: #fff;
     cursor: pointer;
     border: 1px solid #AAA;
@@ -43,17 +50,53 @@
     height: 36px;
 }
 
+.holder-wrapper .fg-color-holder {
+    background: #fff;
+    cursor: pointer;
+    border: 1px solid #AAA;
+    width: 40px;
+    height: 36px;
+}
+
+
+
  .color-picker {
-    width: 130px;
+    width: 170px;
     background: #F3F3F3;
-    height: 81px;
+    height: 100px;
     padding: 5px;
     border: 5px solid #fff;
     box-shadow: 0px 0px 3px 1px #DDD;
-    /* position: absolute;
-    top: 61px;
-    left: 2px; */
+    margin-top: -50px;
+    margin-left: 50px;
 }
+
+.color-picker-container button {
+    justify-self: center;
+    align-self: center;
+    width: 100px;
+    height: 30px;
+    
+}
+
+.color-picker-container .color-item {
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    list-style-type: none;
+    float: left;
+    margin: 2px;
+    border: 1px solid #DDD; 
+ } 
+
+.color-picker-container .color-picker .color-item:hover {
+    border: 1px solid #666;
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter:alpha(opacity=8); 
+ } 
+
+
 
 /* .color-holder {
   background: #fff;
@@ -64,20 +107,3 @@
     float: left;
     margin-left: 5px;
 }
-
-.color-picker .color-item {
-    cursor: pointer;
-    width: 10px;
-    height: 10px;
-    list-style-type: none;
-    float: left;
-    margin: 2px;
-    border: 1px solid #DDD; */
-/* } */
-
-/* .color-picker .color-item:hover {
-    border: 1px solid #666;
-    opacity: 0.8;
-    -moz-opacity: 0.8;
-    filter:alpha(opacity=8); */
-/* } */ */

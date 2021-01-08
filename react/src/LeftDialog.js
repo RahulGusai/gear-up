@@ -60,7 +60,7 @@ export default class LeftDialog extends React.Component {
                                     <button>Add New List</button>
                                 </li>
                                 <li>
-                                    <button>Change Theme</button>
+                                    <button onClick={this.props.changeTheme}>Change Theme</button>
                                 </li>
                             </ul>
                         </div>

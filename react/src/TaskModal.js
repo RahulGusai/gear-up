@@ -67,7 +67,7 @@ export default class TaskModal extends React.Component {
             <div className={classN}>
                 <div class="heading">
                     <div class="title-wrapper">
-                        <img class="icon" src="card.png"/> 
+                        <img class="icon" src="card.png"/>  
                         <textarea placeholder="Enter a title for this card..." class="title-area"></textarea>
                     </div>  
                     <i class="fa fa-close close-icon" onClick={this.closeModal}></i>

@@ -20,6 +20,7 @@ export default class AppIndex extends React.Component {
             currentIndex: 0,
             displayModal: false,
             newListModal: false,
+            themeModal: false,
 
             //cards: this.fetchCardDetails(),
             cards: ["To-Do List","Doing","High Priority","Daily Agenda","Less Priority"],
@@ -44,8 +45,11 @@ export default class AppIndex extends React.Component {
         this.addNewCard = this.addNewCard.bind(this);
         this.closeNewListModal = this.closeNewListModal.bind(this);
         this.addList =  this.addList.bind(this);
+        this.changeTheme = this.changeTheme.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.closeThemeModal = this.closeThemeModal.bind(this);
     }
-
+    
     fetchBoardList() {
         
         
@@ -77,6 +81,12 @@ export default class AppIndex extends React.Component {
         // });
     }
 
+    changeTheme() {
+        this.setState({
+            themeModal: true    
+        });
+    }
+
     displayModal(name,modalTask,index) {
         this.setState({
             displayModal: true,
@@ -89,6 +99,12 @@ export default class AppIndex extends React.Component {
     closeModal() {
         this.setState({
             displayModal: false
+        });
+    }
+
+    closeThemeModal() {
+        this.setState({
+            themeModal: false    
         });
     }
 
@@ -142,10 +158,10 @@ export default class AppIndex extends React.Component {
                 <TopBar></TopBar>
                 
                 <section class="main-app">
-                    <LeftDialog addNewCard={this.addNewCard} boardList={this.state.boardList} currentIndex={this.state.currentIndex} changeCurrentBoard={this.changeCurrentBoard}></LeftDialog>
+                    <LeftDialog addNewCard={this.addNewCard} changeTheme={this.changeTheme} boardList={this.state.boardList} currentIndex={this.state.currentIndex} changeCurrentBoard={this.changeCurrentBoard}></LeftDialog>
                     <AppContent boardName={this.state.boardList[this.state.currentIndex].name} boardIndex={this.state.currentIndex} displayModalCb={this.displayModal} cards={this.state.cards} tasks={this.state.tasks}></AppContent>
                     {/* <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal> */}
-                    <ColorModal></ColorModal>                    
+                    <ColorModal displayFlag={this.state.themeModal} closeThemeModal={this.closeThemeModal}></ColorModal>                    
                 </section>
 
                 <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal>
