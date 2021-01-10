@@ -35,7 +35,7 @@ class loginAPI(APIView):
             return  Response(status=status.HTTP_401_UNAUTHORIZED)
 
 class logoutAPI(APIView):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
@@ -72,5 +72,11 @@ class signup(APIView):
             print(err)
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-class checkUname(APIView):
-    pass
+class checkUserName(APIView):
+    def get(self,request):
+        uname=request.GET.get('uname','')
+        try:
+            u = User.objects.get(username=uname)
+            return Response({"found":True},status=status.HTTP_200_OK)
+        except Exception as err:
+            return Response({"found":False},status=status.HTTP_200_OK)
