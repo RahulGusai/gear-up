@@ -16,8 +16,8 @@ export default class LandingPage extends React.Component {
                 <section class="topbar">
                   
                   <img class="logo" src="logo.png"/>
-                  <button class="loginb" onClick={this.props.loginClick}>Log In</button>
-                  <button class="signupb" onClick={this.props.signupClick}>Sign Up</button>
+                  <a href="/login"><button class="loginb" >Log In</button></a>
+                  <a href="/signup"><button class="signupb">Sign Up</button></a>
                 
                 </section>
             

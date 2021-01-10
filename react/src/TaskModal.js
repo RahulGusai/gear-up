@@ -1,7 +1,6 @@
 import './index.css'
 import React from 'react';
 
-
 export default class TaskModal extends React.Component {
     constructor(props) {
         super(props);
@@ -52,6 +51,7 @@ export default class TaskModal extends React.Component {
         if ( Object.keys(this.props.task).length === 0 && this.props.task.constructor === Object) {
             titleElem.value = "";
             descriptionElem.value = "";
+            labelElem.textContent = "Add This Card";
         }
         else {
             titleElem.value = this.props.task["title"];

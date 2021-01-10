@@ -2,7 +2,7 @@ import './index.css';
 import React from 'react';
 import Task from './Task';
 
-export default class List extends React.Component {
+    export default class List extends React.Component {
     constructor(props) {
         super(props);
 
@@ -29,21 +29,18 @@ export default class List extends React.Component {
    
     }
 
-
     showModal() {
-        console.log("Displaying task modal now");
         this.props.displayModalCb(this.props.name , {});
     }
 
     render() {
-        const tasks = this.props.tasks[this.props.name].map( (task,index) => {
+        const tasks = this.props.tasks.map( (task,index) => {
             return(
                 <Task index={index} taskObject={task} cardName={this.props.name} cardIndex={this.props.cardIndex} displayModalCb={this.props.displayModalCb} class="task"></Task>
             );
         });
 
         let tasksClassN = `tasks-list-wrapper-common tasks-list-wrapper-${this.props.cardIndex}`; 
-
         return(
             <div className="list-wrapper">
                 <label class="list-name">{this.props.name}</label>

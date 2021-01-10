@@ -1,4 +1,4 @@
-/* .signup-container {  */
+.signup-container { 
     background-image: linear-gradient(to right, #00375a, #003b5b, #003f5a, #00435a, #004659, #054a5c, #0a4f60, #105363, #145a6d, #186177, #1d6881, #226f8b);    
     display: grid;
     height: 100vh;
@@ -20,14 +20,18 @@
     grid-template-columns: 1fr 25px;
   } 
 
-  .signup-form-container .close-icon {
+  .signup-form-container .topbar a {
     cursor: pointer;
     font-size: 25px;
     align-self: start;
     justify-self: end;
     margin-right: 2px;
+    
   } 
 
+  .signup-form-container .topbar i {
+    color: black;
+  } 
 
   .signup-form-container .heading {
     font-size: 10px;

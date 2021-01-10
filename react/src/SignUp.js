@@ -24,7 +24,7 @@ export default class SignUp extends React.Component {
                             <h1>SignUp</h1>
                             <hr class="headingbreak"/>
                         </div>
-                        <i class="fa fa-close close-icon" onClick={this.props.renderDefault}></i>
+                        <a href="/"><i class="fa fa-close close-icon" onClick={this.props.renderDefault}></i></a>
                     </div>
 
                     <div class="buttons">

@@ -1,8 +1,6 @@
 import React from 'react';
 
 
-
-
 export default class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -12,12 +10,23 @@ export default class LoginPage extends React.Component {
         }
     
         this.forgotPassword = this.forgotPassword.bind(this);    
+        this.loginBtnClick = this.loginBtnClick.bind(this);
     }
+
 
     forgotPassword() {
         this.setState({
             render: 'forgot-password'
         });
+    }
+
+    loginBtnClick(e) {
+        e.preventDefault();
+        
+        //Check Credentials
+
+
+        this.props.setLoginState();
     }
 
     render() {
@@ -31,7 +40,7 @@ export default class LoginPage extends React.Component {
                                 <h1>LOGIN</h1>
                                 <hr class="headingbreak"/>
                             </div>
-                            <i class="fa fa-close close-icon" onClick={this.props.renderDefault}></i>
+                            <a href="/"><i class="fa fa-close close-icon"></i></a>
                         </div>
                     
                         <div class="buttons">
@@ -42,7 +51,7 @@ export default class LoginPage extends React.Component {
                                 <a class="password-option" onClick={this.forgotPassword}><u>Forgot Password?</u></a>
                             </div>
 
-                            <button class="loginbtn" type="submit">Log In</button>
+                            <button onClick={this.loginBtnClick} class="loginbtn" type="submit">Log In</button>
                         </div>
                         
                         <div class="third-party">    

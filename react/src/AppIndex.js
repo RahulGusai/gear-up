@@ -13,10 +13,15 @@ export default class AppIndex extends React.Component {
 
         this.state = {
             //boardList: this.fetchBoardList()
-            boardList: [{"name":"RG","cardsCount":4,"tasksCount":10},
-                         {"name":"SampleBoard 2","cardsCount":9,"tasksCount":10},
-                         {"name":"SampleBoard 3","cardsCount":6,"tasksCount":20},
-                         {"name":"SampleBoard 4","cardsCount":8,"tasksCount":15}],
+            boardList: [{"name":"RG","cardsCount":4,"tasksCount":10 ,"tasks": [ { "To-Do List": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"} ]} , 
+                                                                                { "Doing": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"}, {"title":"Demo Task 4" , "description":"Demo Description"} ]} ,
+                                                                                { "High Priority": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} ]} ,
+                                                                                { "Daily Agenda": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"} , {"title":"Demo Task 4" , "description":"Demo Description"} , {"title":"Demo Task 5"} ]},
+                                                                                { "Less Priority": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} ]}],
+                        },
+                        {"name":"SampleBoard 2","cardsCount":9,"tasksCount":10,"tasks":[]},
+                        {"name":"SampleBoard 3","cardsCount":6,"tasksCount":20 ,"tasks":[]},
+                        {"name":"SampleBoard 4","cardsCount":8,"tasksCount":15 ,"tasks":[]}],
             currentIndex: 0,
             displayModal: false,
             newListModal: false,
@@ -30,11 +35,7 @@ export default class AppIndex extends React.Component {
             taskIndex: 0,
 
             //tasks: this.fetchTaskDetails()
-            tasks: [ { "To-Do List": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"} ]} , 
-                     { "Doing": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"}, {"title":"Demo Task 4" , "description":"Demo Description"} ]} ,
-                     { "High Priority": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} ]} ,
-                     { "Daily Agenda": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"} , {"title":"Demo Task 4" , "description":"Demo Description"} , {"title":"Demo Task 5"} ]},
-                     { "Less Priority": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} ]}]
+            
         };
         
         this.fetchBoardList = this.fetchBoardList.bind(this);
@@ -52,7 +53,6 @@ export default class AppIndex extends React.Component {
     
     fetchBoardList() {
         
-        
     }
 
     changeCurrentBoard(index) {
@@ -68,17 +68,6 @@ export default class AppIndex extends React.Component {
         this.setState({
             newListModal: true
         });
-        // let cards = this.state.cards.slice();
-        // cards.push("Demo Task");
-
-        // let tasks = this.state.tasks.slice();
-        // tasks.push({"Demo Task" : []});
-
-        // console.log(cards);
-        // this.setState({
-        //     cards: cards,
-        //     tasks: tasks
-        // });
     }
 
     changeTheme() {
@@ -109,23 +98,27 @@ export default class AppIndex extends React.Component {
     }
 
     addTask(taskObject,flag) {
-        let tasks = this.state.tasks.slice();
+        let tasks = this.state.boardList[this.state.currentIndex]["tasks"].slice();
         
         tasks = tasks.map((task,index) => {
+            console.log(task);
             if ( task[this.state.cardName] !== undefined) {
                 if (flag==0){
                     task[this.state.cardName].push(taskObject);
                 }
                 else {
-                    
+                    console.log("UPDATING");
                     task[this.state.cardName][this.state.taskIndex] = taskObject;    
                 }
             }
             return task;
         });
 
+        let boardList = this.state.boardList.slice();
+        boardList[this.state.currentIndex]["tasks"]=tasks;        
+
         this.setState({
-            tasks: tasks,
+            boardList: boardList,
             displayModal: false
         })
     }
@@ -159,8 +152,7 @@ export default class AppIndex extends React.Component {
                 
                 <section class="main-app">
                     <LeftDialog addNewCard={this.addNewCard} changeTheme={this.changeTheme} boardList={this.state.boardList} currentIndex={this.state.currentIndex} changeCurrentBoard={this.changeCurrentBoard}></LeftDialog>
-                    <AppContent boardName={this.state.boardList[this.state.currentIndex].name} boardIndex={this.state.currentIndex} displayModalCb={this.displayModal} cards={this.state.cards} tasks={this.state.tasks}></AppContent>
-                    {/* <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal> */}
+                    <AppContent boardList={this.state.boardList} boardIndex={this.state.currentIndex} displayModalCb={this.displayModal}></AppContent>
                     <ColorModal displayFlag={this.state.themeModal} closeThemeModal={this.closeThemeModal}></ColorModal>                    
                 </section>
 

@@ -20,7 +20,7 @@
     grid-template-columns: 1fr 25px;  
   } 
 
-  .login-form-container .close-icon {
+  .login-form-container .topbar a {
     cursor: pointer;
     font-size: 25px;
     align-self: start;
@@ -28,6 +28,9 @@
     margin-right: 2px;
   } 
 
+  .login-form-container .topbar i {
+    color: black;
+  } 
 
   .login-form-container .heading {
     font-size: 10px;

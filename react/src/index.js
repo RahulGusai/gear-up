@@ -6,23 +6,33 @@ import LoginPage from './LoginPage';
 import SignUp from './SignUp';
 import AppIndex from './AppIndex';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    Redirect,
+    useHistory,
+    useLocationk
+  } from "react-router-dom";
+
 class LandingIndex extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            render: "landing"
+            render: "landing",
+            loggedIn: false
         }
 
-        this.onLoginBtnClick = this.onLoginBtnClick.bind(this);
+        this.setLoginState = this.setLoginState.bind(this);
         this.onSignupBtnClick = this.onSignupBtnClick.bind(this);    
- 
         this.renderDefaultState = this.renderDefaultState.bind(this);
     }
  
-    onLoginBtnClick() {
+    setLoginState() {
         this.setState({
-            render: 'login'
+            loggedIn: true
         });
     }
 
@@ -40,27 +50,51 @@ class LandingIndex extends React.Component {
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
  
     render() {
-        if (this.state.render === "landing"){
-            return (
-               <LandingPage loginClick={this.onLoginBtnClick} signupClick={this.onSignupBtnClick}></LandingPage>    
-            );
-        }
-        
-        else if (this.state.render === "login") {
-            return (
-                <LoginPage renderDefault={this.renderDefaultState}></LoginPage>
-            );
-        }
+        if (this.state.loggedIn===false){
+            return(
+                <Router>
+                    <Switch>
+                        <Route exact path="/">
+                            <LandingPage loginClick={this.onLoginBtnClick} signupClick={this.onSignupBtnClick}></LandingPage>           
+                        </Route>
+                        
+                        <Route path="/login">
+                            <LoginPage renderDefault={this.renderDefaultState} setLoginState={this.setLoginState}></LoginPage>
+                        </Route>
+                        
+                        <Route path="/signup">
+                            <SignUp renderDefault={this.renderDefaultState}></SignUp>
+                        </Route>
 
-        else if (this.state.render === "signup") {
-            return (
-                <SignUp renderDefault={this.renderDefaultState}></SignUp>
+                        <Route path="/">
+                            <Redirect to="/"/> 
+                        </Route>
+                    
+                    </Switch>
+                </Router>
+            );    
+    }
+        else {
+            return(
+                <Router>
+                    <Switch>
+                        <Route exact path="/home">
+                            <AppIndex></AppIndex>
+                        </Route>
+                        
+                        <Route path="/">
+                            <Redirect to="/home"/> 
+                        </Route>
+
+                    </Switch>
+                </Router>
             );
-        }
+        }            
+        
     }
 }
 
 ReactDOM.render(
-  <AppIndex/>,
+  <LandingIndex/>,
   document.getElementById('wrapper')
 );
