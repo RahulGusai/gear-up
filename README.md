@@ -1,4 +1,3 @@
 # gear-up
 
-GearUp helps teams work more collaboratively and get more done by enabling teams to organize and prioritize
-projects in a fun, flexible, and rewarding way.
+GearUp aims to increase personal and teams productivity by organizing tasks in a fun,efficient and flexible way.
