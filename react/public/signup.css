@@ -8,11 +8,11 @@
 
   .signup-form-container {
     width: 400px;
-    height: 300px;
+    height: 510px;
     background-color: white;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
     display: grid;
-    grid-template-rows: 50px 250px;
+    grid-template-rows: 50px 450px;
   }
 
  .signup-form-container .topbar {
@@ -50,28 +50,44 @@
   .signup-form-container .buttons {
     align-self: center;
     display: grid;
-    grid-template-rows: 40px 45px 40px;
+    grid-template-rows: 40px 40px 40px 40px 45px 40px;
     grid-template-columns: 350px;
     grid-gap: 30px;
     justify-content: center;
   }
 
-  .signup-form-container .create-password {
+  .signup-form-container .phone-wrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 5px;
   }
+  
+
+  .signup-form-container .create-password {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 10px 10px;
+    grid-gap: 2px;
+  }
+
 
   #password-input {
     width: 335px;
   }  
+
+  .signup-form-container .username-wrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5px;
+  } 
+
+
   .signup-form-container .input-wrapper {
     display: grid;
     grid-template-columns: 1fr 10px;
-    /* align-items: center; */
   }
 
-  .signup-form-container .password-info {
+  .signup-form-container label {
     font-size: 8px;
     font-weight: 550;
     color: black;
@@ -85,3 +101,19 @@
     cursor: pointer;  
     align-self: center;
   } 
+
+  .signup-container .successfull-signup {
+     display: grid;
+     grid-gap: 20px;
+     grid-template-rows: 100px 50px;
+     align-content: center;
+     justify-content: center;
+  }
+
+  .signup-container .successfull-signup {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-rows: 100px 50px;
+    align-content: center;
+    justify-content: center;
+ }

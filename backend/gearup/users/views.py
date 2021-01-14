@@ -45,7 +45,6 @@ class logoutAPI(APIView):
         except Exception as err:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-
 class signup(APIView):
     def get(self,request):
         try:
@@ -72,11 +71,10 @@ class signup(APIView):
             print(err)
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-class checkUserName(APIView):
-    def get(self,request):
-        uname=request.GET.get('uname','')
+class checkUsername(APIView):
+    def get(self,request,username):
         try:
-            u = User.objects.get(username=uname)
+            u = User.objects.get(username=username)
             return Response({"found":True},status=status.HTTP_200_OK)
         except Exception as err:
             return Response({"found":False},status=status.HTTP_200_OK)

@@ -78,10 +78,6 @@ class LandingIndex extends React.Component {
             return(
                 <Router>
                     <Switch>
-                        <Route exact path="/home">
-                            <AppIndex></AppIndex>
-                        </Route>
-                        
                         <Route path="/">
                             <Redirect to="/home"/> 
                         </Route>

@@ -90,7 +90,7 @@ class deleteBoard(APIView):
         except Exception as err:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-class renameBaord(APIView):
+class renameBoard(APIView):
     def post(self,request,boardname):
         authentication_classes = [SessionAuthentication]
         permission_classes = [IsAuthenticated]
@@ -189,7 +189,7 @@ class editTask(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-class deletetask(APIView):
+class deleteTask(APIView):
     def post(self,request,boardname,listname,tid):
         authentication_classes = [SessionAuthentication]
         permission_classes = [IsAuthenticated]
