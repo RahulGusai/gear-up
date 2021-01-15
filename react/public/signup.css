@@ -8,11 +8,11 @@
 
   .signup-form-container {
     width: 400px;
-    height: 510px;
+    height: 520px;
     background-color: white;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
     display: grid;
-    grid-template-rows: 50px 450px;
+    grid-template-rows: 50px 450px 10px;
   }
 
  .signup-form-container .topbar {
@@ -33,18 +33,27 @@
     color: black;
   } 
 
-  .signup-form-container .heading {
+  .signup-form-container .topbar .heading {
     font-size: 10px;
     display: grid;
     grid-template-rows: 1fr 10px;
+    grid-gap: 10px;
     align-items: center;
     justify-content: start;
   }
 
-  .signup-form-container .headingbreak {
+  .signup-form-container .topbar .heading label{
+    align-self: start;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+
+  .signup-form-container .topbar .headingbreak {
     width: 80px;
     height: 5px;
     background-image: linear-gradient(to right top, #042739, #042b3f, #032f46, #03334c, #033753);
+    margin-left: 0px;
   }
 
   .signup-form-container .buttons {
@@ -55,6 +64,13 @@
     grid-gap: 30px;
     justify-content: center;
   }
+
+  .signup-form-container .email-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5px;
+  }
+  
 
   .signup-form-container .phone-wrapper {
     display: grid;
@@ -95,6 +111,16 @@
     margin-top: 5px;
   }
 
+  .signup-form-container .form-error {
+    font-size: 12px;
+    font-weight: 550;
+    color: red;
+    align-self: center;
+    justify-self: center;
+    /* margin-top: -10px; */
+  }
+
+
 
   .create-password i {
     margin-left: -25px;
@@ -110,10 +136,76 @@
      justify-content: center;
   }
 
-  .signup-container .successfull-signup {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-rows: 100px 50px;
-    align-content: center;
-    justify-content: center;
- }
+
+ .signup-container .signup-form-container .info,.error{
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 40px;
+  grid-gap: 30px;
+  border: 1px solid black;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  
+}
+
+.signup-container .signup-form-container .info .info-label,.error-label{
+  display: grid;
+  justify-content: center;
+  grid-template-rows: auto 40px;
+  grid-gap: 20px;
+}
+
+
+.signup-container .signup-form-container .info .info-label label{
+  font-size: 15px;
+  
+}
+
+ .signup-container .signup-form-container .info .info-label .check{
+  transform: rotate(45deg);
+  height: 48px;
+  width: 24px;
+  border-bottom: 14px solid #78b13f;
+  border-right: 14px solid #78b13f;
+  justify-self: center;
+}
+
+
+.signup-container .signup-form-container .info .info-buttons{
+  display: grid;
+  justify-self: center;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.signup-container .signup-form-container .info .info-buttons button{
+  width: 150px;
+  height: 30px;
+}
+
+.signup-container .signup-form-container .error .error-label label{
+  font-size: 14px;
+  justify-self: center;
+  color: red;
+}
+
+ .signup-container .signup-form-container .error .error-label i{
+  color: red;
+  font-size: 40px;
+  justify-self: center;
+}
+
+
+.signup-container .signup-form-container .error .error-buttons{
+  display: grid;
+  justify-self: center;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.signup-container .signup-form-container .error .error-buttons button{
+  width: 150px;
+  height: 30px;
+}

@@ -49,6 +49,11 @@
     justify-content: center;
   }
 
+  .login-form-container .buttons .email-wrapper{
+    display: grid;
+    grid-template-rows: 1fr 10px;
+  }
+
   .login-form-container .password-wrapper {
     display: grid;
     grid-template-rows: 1fr 10px;

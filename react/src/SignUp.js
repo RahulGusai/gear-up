@@ -4,32 +4,46 @@ import axios from 'axios';
 export default class SignUp extends React.Component {
     constructor(props) {
         super(props);
-        this.usernameCheck = this.usernameCheck.bind(this)
         
-        this.formValidation = {"username":false,"phoneno":false,"password":false};
-        this.SignUpAttempt = "none";
+        this.state = {
+           signupAttempt:"none"
+        }
+    
+        this.formValidation = {"username":true,"phoneno":true,"password":true};
+        this.error={"code":0};
 
+        this.usernameCheck = this.usernameCheck.bind(this);
         this.usernameCheck = this.usernameCheck.bind(this);    
         this.phoneNoCheck = this.phoneNoCheck.bind(this);
         this.pwdCheck = this.pwdCheck.bind(this);    
         this.onSignUp = this.onSignUp.bind(this);
     }
 
+    componentDidUpdate() {
+        if (this.state.signupAttempt === "failure") {
+            const errorWrapper = document.querySelector(".signup-container .signup-form-container .error"); 
+            const erroLabel = document.querySelector(".signup-container .signup-form-container .error .error-label label");
+            erroLabel.innerHTML = `Registration failed. Server returned an error code - <b>${this.error["code"]}</b>. Please try again.`;
+            errorWrapper.style.borderColor = "red";
+        }
+
+        else if(this.state.signupAttempt === "success") {
+                const infoWrapper = document.querySelector(".signup-container .signup-form-container .info"); 
+                console.log("UPDATED");
+                infoWrapper.style.borderColor = "green";
+            }
+    } 
+
     showPasswordToggle(e) {
         var x = document.getElementById("password-input");
         if (x.type === "password") {
           x.type = "text";
         } else {
-          x.type = "password";
+          x.type = "password";                                                                                                                                 
         }
     }
-
+                                                                                                                                                                                                                                    
     componentDidMount() {
-        // const username = document.querySelector(".signup-form-container .buttons .username")
-        // username.addEventListener('input',this.usernameCheck)     
-               
-
-    
     }
 
     usernameCheck(e) {
@@ -38,7 +52,6 @@ export default class SignUp extends React.Component {
         .then((response) => 
         {
             const availabilityLabel = document.querySelector(".signup-form-container .buttons .username-wrapper label");
-            console.log(availabilityLabel);
             if (response.data["found"]===true){
                 this.formValidation["username"]=false;
                 availabilityLabel.hidden=false;
@@ -67,7 +80,6 @@ export default class SignUp extends React.Component {
         const errorLabel = document.querySelector(".signup-form-container .buttons .phone-wrapper label");
         if (valid === false){
             errorLabel.hidden=false;
-            console.log(errorLabel);
             errorLabel.style.color="red";
         }
         else {
@@ -83,7 +95,6 @@ export default class SignUp extends React.Component {
         const errorLabel = document.querySelector(".signup-form-container .buttons .create-password .invalid-pwd");
         if (valid === false){
             errorLabel.hidden=false;
-            console.log(errorLabel);
             errorLabel.style.color="red";
         }
         else {
@@ -93,31 +104,53 @@ export default class SignUp extends React.Component {
 
     onSignUp() {
         //Checking if the form is valid or not
-        console.log(this.formValidation);
         let valid=true;
         Object.keys(this.formValidation).forEach(flag => {
             valid = (valid && this.formValidation[flag]);
         });
-        console.log(valid);
 
         if (valid===false){
-            console.log("FORM IS INVALID");
+            const formError = document.querySelector(".signup-form-container .form-error");  
+            formError.hidden=false;
+            formError.style.color="red";
         }
         else {
-            console.log("FORM IS VALID");
-        }
+            const username = document.querySelector(".signup-form-container .buttons .username-wrapper input").value;
+            const name = document.querySelector(".signup-form-container .buttons input").value;
+            const phoneno = document.querySelector(".signup-form-container .buttons .phone-wrapper input").value;
+            const email = document.querySelector(".signup-form-container .buttons .email-wrapper input").value;
+            const password = document.querySelector(".signup-form-container .buttons .create-password label").value;
 
+            // const payload = {"uname":usernameElem.value , "name":nameElem.value, "phoneno":phoneElem.value, "email":emailElem.value, "password":phoneElem.value};
+            axios.get(`/user/signup?uname=${username}&name=${name}&phoneno=${phoneno}&email=${email}&password=${password}`)
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200){
+                    this.setState({
+                        "signupAttempt":"success"
+                    });
+                }
+
+            })
+            .catch((error) => {
+                this.error["code"] = error.response.status;
+                this.setState({
+                    "signupAttempt":"failure"
+                });
+            });
+
+        }
     }
 
 
     render() {
-        if (this.SignUpAttempt === "none"){
-            return ( 
+        if (this.state.signupAttempt === "none"){
+            return( 
                 <div class="signup-container">
                     <div class="signup-form-container">
                         <div class="topbar">
                             <div class="heading">
-                                <h1>SignUp</h1>
+                                <label>SignUp</label>
                                 <hr class="headingbreak"/>
                             </div>
                             <a href="/"><i class="fa fa-close close-icon" onClick={this.props.renderDefault}></i></a>
@@ -135,10 +168,10 @@ export default class SignUp extends React.Component {
                                 <label hidden="true" class="phone-info">Phone number should only contain 10 digits</label> 
                             </div>
 
-                            {/* <div class="email-wrapper"> */}
+                            <div class="email-wrapper">
                             <input type="text" placeholder="Enter Email Id"/>     
                                 {/* <label class="password-info">Enter minimum 8 characters with one special character(!,~,$,#,% or &)</label>ec2-52-66-248-198.ap-south-1.compute.amazonaws.com   */}
-                            {/* </div>     */}
+                            </div>    
 
                             <div class="create-password">
                                 <div class="input-wrapper">
@@ -151,22 +184,71 @@ export default class SignUp extends React.Component {
 
                             <button onClick={this.onSignUp} class="signupbtn" type="submit">Sign Up</button>
                         </div>
+
+                        <label hidden="true" class="form-error">Please correct all the fields.</label>
                     </div>
                 </div>
             );      
         }        
     
         else {
-            <div class="signup-sontainer">
-                <div class="successfull-signup">
-                    <div class="check"></div>
+                if (this.state.signupAttempt === "success") {
+                    return(
+                        <div class="signup-container">
+                            <div class="signup-form-container">
+                                <div class="topbar">
+                                        <div class="heading">
+                                        <label>SignUp</label>
+                                        <hr class="headingbreak"/>
+                                    </div>
+                                    <a href="/"><i class="fa fa-close close-icon" onClick={this.props.renderDefault}></i></a>
+                                </div>
+                        
+                                <div class="info">
+                                    <div class="info-label">
+                                        <div class="check"></div>
+                                        <label>You have been registered successfully.</label>
+                                    </div>
 
-                    <div class="buttons">
-                        <button class="home-page"></button>
-                        <button class="login-page"></button>
-                    </div>
-                </div>
-            </div>
+                                    <div class="info-buttons">
+                                        <a href="/"><button class="home-page">Home</button></a>
+                                        <a href="/login"><button href="/login" class="login-page">Login</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
+
+                else if (this.state.signupAttempt === "failure") {
+                    return(
+                        <div class="signup-container">
+                            <div class="signup-form-container">
+                                <div class="topbar">
+                                        <div class="heading">
+                                        <label>SignUp</label>
+                                        <hr class="headingbreak"/>
+                                    </div>
+                                    <a href="/"><i class="fa fa-close close-icon" onClick={this.props.renderDefault}></i></a>
+                                </div>
+                        
+                                <div class="error">
+                                    <div class="error-label">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                        <label></label>
+                                    </div>
+
+                                    <div class="error-buttons">
+                                        <a href="/"><button class="home-page">Home</button></a>
+                                        <a href="/signup"><button href="/login" class="login-page">SignUp</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
+
+
 
         }    
 
