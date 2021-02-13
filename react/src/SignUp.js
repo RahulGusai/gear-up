@@ -75,7 +75,7 @@ export default class SignUp extends React.Component {
 
     phoneNoCheck(e) {
         var reg = new RegExp('^[0-9]{10}$');    
-        const valid = reg.test(e.target.value)
+        const valid = reg.test(e.target.value);
         this.formValidation["phoneno"]=valid; 
         const errorLabel = document.querySelector(".signup-form-container .buttons .phone-wrapper label");
         if (valid === false){
@@ -119,10 +119,11 @@ export default class SignUp extends React.Component {
             const name = document.querySelector(".signup-form-container .buttons input").value;
             const phoneno = document.querySelector(".signup-form-container .buttons .phone-wrapper input").value;
             const email = document.querySelector(".signup-form-container .buttons .email-wrapper input").value;
-            const password = document.querySelector(".signup-form-container .buttons .create-password label").value;
+            const password = document.querySelector(".signup-form-container .buttons .input-wrapper input").value;
 
-            // const payload = {"uname":usernameElem.value , "name":nameElem.value, "phoneno":phoneElem.value, "email":emailElem.value, "password":phoneElem.value};
-            axios.get(`/user/signup?uname=${username}&name=${name}&phoneno=${phoneno}&email=${email}&password=${password}`)
+            const payload = {"uname":username, "name":name, "phoneno":phoneno, "email":email, "password":password};
+            console.log("Sending request to the server");
+            axios.post("/user/signup",payload)
             .then((response) => {
                 console.log(response);
                 if (response.status === 200){
@@ -133,6 +134,7 @@ export default class SignUp extends React.Component {
 
             })
             .catch((error) => {
+                console.log(error);  
                 this.error["code"] = error.response.status;
                 this.setState({
                     "signupAttempt":"failure"

@@ -10,6 +10,9 @@ export default class LeftDialog extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.boards);
+        console.log(this.props.currentIndex);
+        
         document.querySelector(`.board-list-wrapper .board-list .boards-list-${this.props.currentIndex}`).style.background = "#4E9E45";
     }
 
@@ -22,7 +25,7 @@ export default class LeftDialog extends React.Component {
     }
 
     render() {
-        var boards = this.props.boardList.map( (board,index) => {
+        var boards = this.props.boards.map( (board,index) => {
             return(
                 <li key={index} class="boards-list" onClick={() => this.props.changeCurrentBoard(index)}>
                     <button className={`boards-list-${index}`}>{board.name}</button>
@@ -33,10 +36,10 @@ export default class LeftDialog extends React.Component {
         return (
             <div class="left-dialog-wrapper">
                     <div class="heading">
-                        <label class="currentBoardLabel"><u>{this.props.boardList[this.props.currentIndex].name}</u></label>
+                        <label class="currentBoardLabel"><u>{this.props.boards[this.props.currentIndex]["name"]}</u></label>
                         <div class="footer">
-                            <label class="card-label">Cards- {this.props.boardList[this.props.currentIndex].cardsCount} </label>
-                            <label class="task-label">Tasks- {this.props.boardList[this.props.currentIndex].tasksCount}</label>
+                            <label class="card-label">Tasks- {this.props.boards[this.props.currentIndex]["tasksCount"]} </label>
+                            <label class="task-label">Cards- {this.props.boards[this.props.currentIndex]["cardsCount"]} </label>
                         </div>
                     </div>
 

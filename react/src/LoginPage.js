@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 
 export default class LoginPage extends React.Component {
     constructor(props) {
@@ -22,11 +22,31 @@ export default class LoginPage extends React.Component {
 
     loginBtnClick(e) {
         e.preventDefault();
+
+        // Verify credentials by sending request to the server
+        const emailId = document.querySelector(".login-container .login-form-container .buttons .email-input").value;
+        const password = document.querySelector(".login-container .login-form-container .buttons .password-wrapper input").value;
+        const payload = {"emailid":emailId, "password":password};
         
-        //Check Credentials
+        console.log("Sending request to the server");
+        axios.post("/user/login",payload)
+        .then((response) => {
+            if (response.status === 200){
+                this.props.setLoginState(response.data["token"],response.data["refresh"]);
+            }
+            else {
+                console.log("Invalid credentials");
+                // Error handling dialog
+            }
 
-
-        this.props.setLoginState();
+        })
+        .catch((error) => {
+            console.log(error.response);
+            console.log("PROMISE GOT REJECTED");
+            // Error handling dialog
+        });
+    
+    
     }
 
     render() {
@@ -44,7 +64,7 @@ export default class LoginPage extends React.Component {
                         </div>
                     
                         <div class="buttons">
-                            <input type="text" placeholder="Enter Email"/>     
+                            <input class="email-input" type="text" placeholder="Enter Email"/>     
                             
                             <div class="password-wrapper">
                                 <input type="text" placeholder="Enter Password"/>     

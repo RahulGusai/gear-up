@@ -7,16 +7,16 @@ import json
 
 class Board(models.Model):
     name = models.CharField(max_length=20,unique=True)
-    lists = models.IntegerField()
+    tasks = models.IntegerField()
     cards = models.IntegerField()
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE) 
 
-class List(models.Model):
+class Task(models.Model):
     board=models.ForeignKey(Board, on_delete=models.CASCADE)
     name=models.CharField(max_length=20)
 
-class Task(models.Model):
-    List=models.ForeignKey(List, on_delete=models.CASCADE)
+class Card(models.Model):
+    task=models.ForeignKey(Task, on_delete=models.CASCADE)
     title=models.CharField(max_length=20)
     description=models.CharField(max_length=200)
     duedate=models.CharField(max_length=30)

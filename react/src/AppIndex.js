@@ -6,36 +6,34 @@ import AppContent from './AppContent'
 import TaskModal from './TaskModal'
 import ListModal from './ListModal'
 import ColorModal from './ColorModal'
+import axios from 'axios';
 
 export default class AppIndex extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            //boardList: this.fetchBoardList()
-            boardList: [{"name":"RG","cardsCount":4,"tasksCount":10 ,"tasks": [ { "To-Do List": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"} ]} , 
-                                                                                { "Doing": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"}, {"title":"Demo Task 4" , "description":"Demo Description"} ]} ,
-                                                                                { "High Priority": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} ]} ,
-                                                                                { "Daily Agenda": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} , {"title":"Demo Task 3" , "description":"Demo Description"} , {"title":"Demo Task 4" , "description":"Demo Description"} , {"title":"Demo Task 5"} ]},
-                                                                                { "Less Priority": [ {"title":"Demo Task 1" , "description":"Demo Description"} , {"title":"Demo Task 2" , "description":"Demo Description"} ]}],
-                        },
-                        {"name":"SampleBoard 2","cardsCount":9,"tasksCount":10,"tasks":[]},
-                        {"name":"SampleBoard 3","cardsCount":6,"tasksCount":20 ,"tasks":[]},
-                        {"name":"SampleBoard 4","cardsCount":8,"tasksCount":15 ,"tasks":[]}],
+
+            //STEPS
+            // 1. Fetch board data from the API
+            // 2. Feed the data to the React Component
+            // 3. Upon some change, databse will be changed.
+            // 4. First two steps will occur on mounting of component subsequent re-rendering.
+
+            // boards: [],
             currentIndex: 0,
             displayModal: false,
             newListModal: false,
             themeModal: false,
 
             //cards: this.fetchCardDetails(),
-            cards: ["To-Do List","Doing","High Priority","Daily Agenda","Less Priority"],
-            cardName:"",
+            tasks: ["To-Do List","Doing","High Priority","Daily Agenda","Less Priority"],
+            taskName:"",
            
             modalTask: {},
-            taskIndex: 0,
+            cardIndex: 0,
 
             //tasks: this.fetchTaskDetails()
-            
         };
         
         this.fetchBoardList = this.fetchBoardList.bind(this);
@@ -51,9 +49,48 @@ export default class AppIndex extends React.Component {
         this.closeThemeModal = this.closeThemeModal.bind(this);
     }
     
-    fetchBoardList() {
-        
+    componentDidMount() {
+        // // Fetch board details
+        // axios.get("/data/boards",{
+        //     "headers": {
+        //         "Authorization": "Bearer " + localStorage.getItem("access")
+        //     }
+        // })
+        // .then( (response) => {
+        //         console.log(response.data);
+        //         this.setState({
+        //             boards: response.data
+        //         });
+        //     } 
+        // )
+        // .catch( (error) => {
+        //     console.log("PROMISE GOT REJECTED");
+        //     console.log(error);
+        //     }
+        // );
     }
+    
+    async fetchBoardList() {
+        // let boards; 
+        let res = await axios.get("/data/boards",{ 
+            "headers": {
+                "Authorization": "Bearer " + localStorage.getItem("access")
+            }
+        })
+        .then( (response) => {
+            console.log(response.data);
+            return response.data;
+            // boards = response.data;
+        })
+        .catch( (error) => {
+            console.log("PROMISE GOT REJECTED");
+            console.log(error);
+            }
+        );
+            
+        console.log(res);
+        return res;
+    }        
 
     changeCurrentBoard(index) {
         document.querySelector(`.board-list-wrapper .board-list .boards-list-${this.state.currentIndex}`).style.background = "white";
@@ -98,7 +135,7 @@ export default class AppIndex extends React.Component {
     }
 
     addTask(taskObject,flag) {
-        let tasks = this.state.boardList[this.state.currentIndex]["tasks"].slice();
+        let tasks = this.state.boards[this.state.currentIndex]["tasks"].slice();
         
         tasks = tasks.map((task,index) => {
             console.log(task);
@@ -114,11 +151,11 @@ export default class AppIndex extends React.Component {
             return task;
         });
 
-        let boardList = this.state.boardList.slice();
-        boardList[this.state.currentIndex]["tasks"]=tasks;        
+        let boards = this.state.boards.slice();
+        boards[this.state.currentIndex]["tasks"]=tasks;        
 
         this.setState({
-            boardList: boardList,
+            boards: boards,
             displayModal: false
         })
     }
@@ -146,18 +183,30 @@ export default class AppIndex extends React.Component {
     }
 
     render() {
+        let boards;
+        // Fetch board details
+        
+        boards = this.fetchBoardList();
+        console.log(boards);
+        let resolved = Promise.all(boards);
+        console.log(resolved);
+
+        
+        
+        console.log("Demo statement");        
+
         return (
             <div class="app-wrapper">
-                <TopBar></TopBar>
+                <TopBar onLogout={this.props.onLogout}></TopBar>
                 
                 <section class="main-app">
-                    <LeftDialog addNewCard={this.addNewCard} changeTheme={this.changeTheme} boardList={this.state.boardList} currentIndex={this.state.currentIndex} changeCurrentBoard={this.changeCurrentBoard}></LeftDialog>
-                    <AppContent boardList={this.state.boardList} boardIndex={this.state.currentIndex} displayModalCb={this.displayModal}></AppContent>
-                    <ColorModal displayFlag={this.state.themeModal} closeThemeModal={this.closeThemeModal}></ColorModal>                    
+                    <LeftDialog  addNewCard={this.addNewCard} changeTheme={this.changeTheme} boards={boards} currentIndex={this.state.currentIndex} changeCurrentBoard={this.changeCurrentBoard}></LeftDialog>
+                    {/* <AppContent boards={this.state.boards} boardIndex={this.state.currentIndex} displayModalCb={this.displayModal}></AppContent>
+                    <ColorModal displayFlag={this.state.themeModal} closeThemeModal={this.closeThemeModal}></ColorModal>                     */}
                 </section>
 
-                <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal>
-                <TaskModal task={this.state.modalTask} addTask={this.addTask} displayFlag={this.state.displayModal} closeModal={this.closeModal}></TaskModal>
+                {/* <ListModal addNewList={this.addList} displayFlag={this.state.newListModal} closeModal={this.closeNewListModal}></ListModal>
+                <TaskModal task={this.state.modalTask} addTask={this.addTask} displayFlag={this.state.displayModal} closeModal={this.closeModal}></TaskModal> */}
             </div>
         );
     }

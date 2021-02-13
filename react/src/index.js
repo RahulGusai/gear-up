@@ -22,17 +22,40 @@ class LandingIndex extends React.Component {
 
         this.state = {
             render: "landing",
-            loggedIn: false
+            loggedIn: null
         }
 
         this.setLoginState = this.setLoginState.bind(this);
+        this.setLogoutState = this.setLogoutState.bind(this);
         this.onSignupBtnClick = this.onSignupBtnClick.bind(this);    
         this.renderDefaultState = this.renderDefaultState.bind(this);
     }
  
-    setLoginState() {
+    componentDidMount() {
+        let loggedIn = localStorage.getItem('loggedIn');
+        this.setState({
+            loggedIn: loggedIn
+        });
+    }
+
+    setLoginState(access,refresh) {
+        localStorage.setItem("loggedIn",true);
+        localStorage.setItem("access",access);
+        localStorage.setItem("refresh",refresh);
+
         this.setState({
             loggedIn: true
+        });
+    }
+
+    setLogoutState() {
+        console.log("setting logging out state");
+        localStorage.removeItem("loggedIn");
+        localStorage.removeItem("access");
+        localStorage.removeItem("refresh");
+
+        this.setState({
+            loggedIn: null
         });
     }
 
@@ -50,7 +73,7 @@ class LandingIndex extends React.Component {
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
  
     render() {
-        if (this.state.loggedIn===false){
+        if (this.state.loggedIn===null){
             return(
                 <Router>
                     <Switch>
@@ -61,6 +84,7 @@ class LandingIndex extends React.Component {
                         <Route path="/login">
                             <LoginPage renderDefault={this.renderDefaultState} setLoginState={this.setLoginState}></LoginPage>
                         </Route>
+                        
                         
                         <Route path="/signup">
                             <SignUp renderDefault={this.renderDefaultState}></SignUp>
@@ -73,20 +97,25 @@ class LandingIndex extends React.Component {
                     </Switch>
                 </Router>
             );    
-    }
+        }
+    
         else {
             return(
                 <Router>
                     <Switch>
+                        <Route exact path="/home">
+                            <AppIndex onLogout={this.setLogoutState}></AppIndex>
+                        </Route>
+
                         <Route path="/">
                             <Redirect to="/home"/> 
                         </Route>
+
 
                     </Switch>
                 </Router>
             );
         }            
-        
     }
 }
 

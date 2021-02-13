@@ -3,7 +3,7 @@
     width: 100vw;
     background: #46C64A;
     display: grid;
-    grid-template-columns: 30px 250px 30px 1fr 30px 30px 50px;
+    grid-template-columns: 30px 250px 30px 1fr 30px 30px auto;
     grid-template-rows: 30px;
     grid-gap: 5px;   
     align-content: center;
@@ -47,7 +47,38 @@
 }
 
 
-.topbar-wrapper .account-btn {
-    border-radius: 20px;
-    /* margin-right: 10px; */
+.topbar-wrapper .account-btn-wrapper{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto; 
+    grid-gap: 0px;
+    justify-items: center;
+    align-items: center;
+}
+
+.topbar-wrapper .account-btn-wrapper a{
+    cursor: pointer;
+}
+
+.topbar-wrapper .account-btn-wrapper .account-btn{
+    border-radius: 20px;  
+    margin-right: 10px; 
+    margin-top: 2px;
+}
+
+.topbar-wrapper .account-btn-wrapper .account-btn-dropdown{
+    visibility: hidden;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 150px;
+    margin-top: 120px;
+    text-align: center;
+    margin-right: 110px;
+}
+
+.topbar-wrapper .account-btn-wrapper .account-btn-dropdown a{
+    border-bottom: 1px solid black;
+    margin-top: 5px;
+    display: block;
+    font-size: 14px;
 }
